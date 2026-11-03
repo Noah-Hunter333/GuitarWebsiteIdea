@@ -20,7 +20,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     border-style: solid;
-    border: 2px solid red;
+    border: 2px solid silver;
     border-radius: 5px;
 
 }
@@ -33,11 +33,22 @@ padding: 0px 50px 0px 0px
 a {
     color:white
 }
+.The_Menu_Nav {
+    color: #FFD700;
+}
+
+li {
+    color: silver;
+        padding-right: 20px;
+
+}
+
 nav ul li{
     display: inline-block;
     list-style: none;
     margin: 10px 15px;
     color: white;
+    
 }
 nav ul li a {
     text-decoration: none;
