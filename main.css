@@ -21,17 +21,18 @@ a {
 }
 
 .container {
-  max-width: 1100px;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 10%;
+  padding: 0 clamp(1.25rem, 4vw, 4rem);
 }
 
 section {
-  padding: 5rem 0;
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
 }
 
 .section-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 2.4vw, 2.9rem);
   margin-bottom: 2.5rem;
   text-align: center;
   letter-spacing: 0.1rem;
@@ -45,7 +46,7 @@ section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.92)), url(imgs/GuitarBackgroundFM.jpg);
   background-position: center;
   background-size: cover;
-  padding: 10px 10%;
+  padding: 10px max(clamp(1.25rem, 4vw, 4rem), (100% - 1600px) / 2 + clamp(1.25rem, 4vw, 4rem));
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -70,8 +71,7 @@ nav {
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 10px 15px;
-  padding-right: 20px;
+  margin: 10px 12px;
   color: silver;
 }
 
@@ -98,6 +98,7 @@ nav ul li a.active {
 .menu-text {
   color: #ffd700;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .btn-download {
@@ -119,19 +120,19 @@ nav ul li a.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 700px;
+  max-width: min(52rem, 100%);
 }
 
 .hero-title {
-  font-size: 4rem;
+  font-size: clamp(2.1rem, 4.4vw, 5rem);
   line-height: 1.1;
   margin-bottom: 1rem;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  max-width: 550px;
+  font-size: clamp(1.05rem, 1.1vw, 1.35rem);
+  max-width: 38rem;
   margin-bottom: 2rem;
   color: #d3d3d3;
 }
@@ -142,7 +143,7 @@ nav ul li a.active {
 
 .hero-img.main {
   width: 100%;
-  max-width: 420px;
+  max-width: clamp(320px, 30vw, 560px);
   height: auto;
   border: 2px solid silver;
   border-radius: 8px;
@@ -154,9 +155,13 @@ nav ul li a.active {
 }
 
 .passion-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 1.8vw, 2rem);
+}
+.passion-grid > * {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .passion-card {
@@ -173,12 +178,14 @@ nav ul li a.active {
   border-color: #ffd700;
 }
 .passion-card h3 {
-  font-size: 1.4rem;
+  font-size: clamp(1.15rem, 1.2vw, 1.45rem);
   margin-bottom: 1rem;
   color: #ffd700;
 }
 .passion-card p {
   color: #d3d3d3;
+  max-width: 34rem;
+  margin: 0 auto;
 }
 
 .card-icon {
@@ -191,9 +198,13 @@ nav ul li a.active {
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 1.8vw, 2rem);
+}
+.gallery-grid > * {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .gallery-item {
@@ -202,7 +213,7 @@ nav ul li a.active {
 
 .gallery-img {
   width: 100%;
-  height: 220px;
+  height: clamp(190px, 15vw, 300px);
   object-fit: cover;
   border: 2px solid silver;
   border-radius: 8px;
@@ -226,12 +237,12 @@ nav ul li a.active {
 }
 
 .philosophy-content {
-  max-width: 800px;
+  max-width: min(46rem, 100%);
   margin: 0 auto;
 }
 
 .philosophy-text {
-  font-size: 1.1rem;
+  font-size: clamp(1.05rem, 1vw, 1.2rem);
   margin-bottom: 2rem;
   color: #d3d3d3;
 }
@@ -255,13 +266,17 @@ nav ul li a.active {
 
 .quick-links {
   background-color: #121212;
-  padding-bottom: 6rem;
+  padding-bottom: calc(clamp(3.5rem, 6vw, 6rem) + 1rem);
 }
 
 .links-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 1.8vw, 2rem);
+}
+.links-grid > * {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .link-card {
@@ -327,30 +342,43 @@ nav ul li a.active {
   transform: translateY(-4px);
 }
 
-@media (max-width: 900px) {
-  .hero-title {
-    font-size: 2.8rem;
-  }
+@media (max-width: 1000px) {
   nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .logo {
+    padding: 0;
+  }
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 2rem;
+    width: 100%;
+    max-width: 24rem;
+  }
+  nav ul li {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+  nav ul li a {
+    display: block;
+    padding: 0.35rem 0;
+  }
+  .nav-buttons {
     flex-wrap: wrap;
     justify-content: center;
   }
 }
 @media (max-width: 600px) {
   .hero {
-    padding: 10px 5%;
+    padding: 10px 1rem;
   }
   .container {
-    padding: 0 5%;
-  }
-  .hero-title {
-    font-size: 2.2rem;
-  }
-  .section-title {
-    font-size: 1.8rem;
-  }
-  .gallery-img {
-    height: 180px;
+    padding: 0 1rem;
   }
   .back-to-top {
     right: 1rem;

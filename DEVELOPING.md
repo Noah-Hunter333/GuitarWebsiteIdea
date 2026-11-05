@@ -105,16 +105,37 @@ Edit `_settings.scss`.
 | --- | --- |
 | Space above and below sections | `$section-pad` |
 | Gaps, margins, card padding | `$space-xs` to `$space-lg` |
-| Page width | `$container-max` |
-| Side padding | `$container-pad` |
+| Gap between cards | `$space-gap` |
+| Widest the page ever gets | `$container-max` |
+| Side padding (scales with the screen) | `$container-pad` |
 | Corner roundness | `$radius`, `$radius-sm` |
 | Border thickness | `$border-size`, `$border-thin` |
 | Shadow depth | `$shadow` |
 | Animation speed | `$speed` |
 | Hover strength | `$pop-scale`, `$card-pop`, `$rise-distance` |
 | Heading sizes | `$title-size`, `$hero-title-size`, `$card-title-size` |
-| Where layouts break | `$bp-md`, `$bp-sm` |
-| Narrowest card before a column drops | `$card-min` |
+| Where the header switches to the stacked layout | `$bp-md`, `$bp-sm` |
+| Narrowest card before it wraps to the next row | `$card-min` |
+
+### How the page fills the screen
+
+Most sizes are `clamp(min, viewport-based, max)`. That means one value covers
+phones and ultrawides: it stops shrinking at the min, grows with the screen,
+and stops growing at the max.
+
+- **Shell** - `.container` is `width: 100%` with `max-width: $container-max`,
+  so it stretches with the window until it reaches the cap.
+- **Side padding** - `$container-pad` is `clamp(1.25rem, 4vw, 4rem)`, so the
+  gutters grow a little instead of staying tiny on big monitors.
+- **Type** - the three `*-size` tokens are clamps, so no media query overrides
+  are needed for heading sizes.
+- **Cards** - `$card-min` decides when a row wraps; the cards then stretch to
+  fill the row, so there are no ragged gaps.
+- **Media queries** only handle things `clamp()` can't: the nav wrapping and
+  the small-screen padding.
+
+To make the whole page wider on desktop, raise `$container-max`.
+To change how fast things scale, edit the middle value of a `clamp()`.
 
 ### Shared looks
 
@@ -125,11 +146,15 @@ Edit `_mixins.scss`.
 | Every dark panel (cards, quote, links) | `card-surface` |
 | Photo borders and shadow | `framed-image` |
 | Scale-up on hover | `hover-pop` |
-| Column count and gaps | `card-grid` |
+| Card wrapping and gaps | `card-grid` |
 
 ### One specific section
 
 Edit `main.scss`. It is split into commented blocks in the same order as `index.html`.
+
+The **Sound & Signal** section (`#routing`) reuses the `.passion-grid` and
+`.passion-card` classes on purpose, so it needs no styles of its own.
+Style it by editing the `.passion-card` block.
 
 **Two shortcuts:**
 
@@ -278,7 +303,6 @@ Serve it with Live Server instead.
 The container is too narrow for three cards plus the gaps.
 
 Lower `$card-min`, or widen `$container-max`, or reduce `$container-pad`.
-
 ### A gallery image is cropped oddly
 
 `object-fit: cover` is cropping it.

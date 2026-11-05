@@ -39,6 +39,7 @@ a {
 
 //every section shares the same wrapper + spacing
 .container {
+  width: 100%;
   max-width: $container-max;
   margin: 0 auto;
   padding: 0 $container-pad;
@@ -64,7 +65,8 @@ section {
   background-image: $HeroOverlay-c, url(imgs/GuitarBackgroundFM.jpg);
   background-position: center;
   background-size: cover;
-  padding: $hero-pad;
+  //keeps the nav edges lined up with the sections below at any width
+  padding: $hero-pad max(#{$container-pad}, calc((100% - #{$container-max}) / 2 + #{$container-pad}));
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -90,8 +92,7 @@ nav {
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 10px 15px;
-  padding-right: 20px;
+  margin: 10px 12px;
   color: $silver-color;
 }
 
@@ -118,6 +119,7 @@ nav ul li a.active {
 .menu-text {
   color: $gold-color;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .btn-download {
@@ -141,7 +143,8 @@ nav ul li a.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 700px;
+  //scales with the screen, capped so the headline keeps a readable line length
+  max-width: min(52rem, 100%);
 }
 
 .hero-title {
@@ -152,8 +155,8 @@ nav ul li a.active {
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  max-width: 550px;
+  font-size: clamp(1.05rem, 1.1vw, 1.35rem);
+  max-width: 38rem;
   margin-bottom: $space-md;
   color: $grey-color;
 }
@@ -164,7 +167,8 @@ nav ul li a.active {
 
 .hero-img.main {
   width: 100%;
-  max-width: 420px;
+  //grows with the viewport instead of staying at a fixed 420px
+  max-width: clamp(320px, 30vw, 560px);
   height: auto;
   @include framed-image;
   @include hover-pop;
@@ -193,6 +197,9 @@ nav ul li a.active {
 
   p {
     color: $grey-color;
+    //keeps lines readable now that the cards stretch on wide screens
+    max-width: 34rem;
+    margin: 0 auto;
   }
 }
 
@@ -216,7 +223,8 @@ nav ul li a.active {
 
 .gallery-img {
   width: 100%;
-  height: 220px;
+  //taller on big screens so the row does not look like a thin strip
+  height: clamp(190px, 15vw, 300px);
   object-fit: cover;
   @include framed-image;
   @include hover-pop;
@@ -237,12 +245,12 @@ nav ul li a.active {
 
 //philosophy
 .philosophy-content {
-  max-width: 800px;
+  max-width: min(46rem, 100%);
   margin: 0 auto;
 }
 
 .philosophy-text {
-  font-size: 1.1rem;
+  font-size: clamp(1.05rem, 1vw, 1.2rem);
   margin-bottom: $space-md;
   color: $grey-color;
 }
@@ -265,7 +273,7 @@ nav ul li a.active {
 //quick links
 .quick-links {
   background-color: $dark-color;
-  padding-bottom: $section-pad + 1rem;
+  padding-bottom: calc(#{$section-pad} + 1rem);
 }
 
 .links-grid {
@@ -337,13 +345,41 @@ nav ul li a.active {
   }
 }
 
-//the card grids handle their own columns (see _mixins.scss) - this is everything else
+//the card grids handle their own wrapping (see _mixins.scss) and the type
+//scales itself, so these are only the layout fixes that clamp() cannot do
 @media (max-width: $bp-md) {
-  .hero-title {
-    font-size: 2.8rem;
+  //stack the header so nothing lands on a ragged centred row
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-sm;
   }
 
-  nav {
+  .logo {
+    padding: 0;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-xs $space-md;
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 0.35rem 0;
+  }
+
+  .nav-buttons {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -356,18 +392,6 @@ nav ul li a.active {
 
   .container {
     padding: 0 $container-pad-sm;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .gallery-img {
-    height: 180px;
   }
 
   .back-to-top {

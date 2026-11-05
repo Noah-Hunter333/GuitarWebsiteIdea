@@ -23,9 +23,15 @@
   }
 }
 
-//cards flow into as many columns as fit, then stack on narrow screens
+//cards wrap on their own and stretch to fill the row, so a row with one
+//card left over widens instead of leaving a gap
 @mixin card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($card-min, 1fr));
-  gap: $space-md;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-gap;
+
+  > * {
+    flex: 1 1 $card-min;
+    min-width: 0;
+  }
 }
