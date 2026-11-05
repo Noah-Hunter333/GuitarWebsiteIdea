@@ -1,0 +1,31 @@
+//the dark panel look shared by the passion cards, quote box and quick links
+@mixin card-surface($border-color: $card-border, $border: $border-thin) {
+  background-image: $Card-c;
+  border: $border solid $border-color;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  transition: transform $speed ease, border-color $speed ease, box-shadow $speed ease;
+}
+
+//silver framed photo used by the hero image and gallery
+@mixin framed-image {
+  border: $border-size solid $silver-color;
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+//grow slightly on hover
+@mixin hover-pop($amount: $pop-scale) {
+  transition: transform $speed ease;
+
+  &:hover {
+    transform: scale($amount);
+  }
+}
+
+//cards flow into as many columns as fit, then stack on narrow screens
+@mixin card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($card-min, 1fr));
+  gap: $space-md;
+}

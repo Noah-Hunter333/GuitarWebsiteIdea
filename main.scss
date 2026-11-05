@@ -1,0 +1,377 @@
+// -----------------------------------------------------------------------------
+// The Guitarist - main stylesheet
+//
+// Tweak the partials, not this file:
+//   _colors.scss   -> every colour + gradient
+//   _settings.scss -> spacing, sizes, radius, shadows, speed, breakpoints
+//   _mixins.scss   -> the repeated card / frame / hover / grid patterns
+//
+// Compile after any change:  npx sass main.scss main.css
+// Keep it rebuilding while you work:  npx sass --watch main.scss main.css
+// The sections below follow the order of index.html.
+// -----------------------------------------------------------------------------
+@import "_colors.scss";
+@import "_settings.scss";
+@import "_mixins.scss";
+
+//reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Afacad Flux", sans-serif;
+  background-color: $black-color;
+  color: $white-color;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: $white-color;
+}
+
+//every section shares the same wrapper + spacing
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-pad;
+}
+
+section {
+  padding: $section-pad 0;
+}
+
+.section-title {
+  font-size: $title-size;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  color: $gold-color;
+  text-shadow: $shadow;
+}
+
+//hero
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background-image: $HeroOverlay-c, url(imgs/GuitarBackgroundFM.jpg);
+  background-position: center;
+  background-size: cover;
+  padding: $hero-pad;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+//nav bar across the top of the hero
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-sm;
+  padding: 10px $space-sm;
+  border: $border-size solid $silver-color;
+  border-radius: $radius-sm;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.logo {
+  width: 100px;
+  padding: 0 50px 0 0;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 15px;
+  padding-right: 20px;
+  color: $silver-color;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: $white-color;
+  font-weight: 400;
+  border-bottom: $border-size solid transparent;
+  transition: color $speed ease, border-color $speed ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: $gold-color;
+  border-bottom-color: $gold-color;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.menu-text {
+  color: $gold-color;
+  font-weight: 600;
+}
+
+.btn-download {
+  text-decoration: none;
+  color: $black-color;
+  background-color: $gold-color;
+  padding: 0.6rem 1.4rem;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  transition: transform $speed ease, box-shadow $speed ease;
+
+  &:hover {
+    transform: scale($pop-scale);
+    box-shadow: $shadow;
+  }
+}
+
+//hero content
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
+}
+
+.hero-title {
+  font-size: $hero-title-size;
+  line-height: 1.1;
+  margin-bottom: $space-sm;
+  text-shadow: $shadow;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 550px;
+  margin-bottom: $space-md;
+  color: $grey-color;
+}
+
+.hero-images {
+  margin-top: $space-sm;
+}
+
+.hero-img.main {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  @include framed-image;
+  @include hover-pop;
+}
+
+//passion cards
+.passion-grid {
+  @include card-grid;
+}
+
+.passion-card {
+  @include card-surface;
+  padding: $space-md;
+  text-align: center;
+
+  &:hover {
+    transform: scale($card-pop);
+    border-color: $gold-color;
+  }
+
+  h3 {
+    font-size: $card-title-size;
+    margin-bottom: $space-sm;
+    color: $gold-color;
+  }
+
+  p {
+    color: $grey-color;
+  }
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  margin-bottom: $space-sm;
+}
+
+//gallery
+.gallery-section {
+  background-color: $dark-color;
+}
+
+.gallery-grid {
+  @include card-grid;
+}
+
+.gallery-item {
+  text-align: center;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  @include framed-image;
+  @include hover-pop;
+}
+
+//keeps logos / small images from stretching
+.gallery-placeholder {
+  object-fit: contain;
+  padding: $space-md;
+  background-color: $black-color;
+}
+
+.gallery-caption {
+  margin-top: $space-sm;
+  font-size: 0.95rem;
+  color: $grey-color;
+}
+
+//philosophy
+.philosophy-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.philosophy-text {
+  font-size: 1.1rem;
+  margin-bottom: $space-md;
+  color: $grey-color;
+}
+
+//border: 0 in the mixin so only the gold left edge shows
+.quote-box {
+  @include card-surface($gold-color, 0);
+  border-left: 4px solid $gold-color;
+  border-radius: 0 $radius $radius 0;
+  padding: $space-md;
+  margin: $space-md 0;
+
+  blockquote {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: $white-color;
+  }
+}
+
+//quick links
+.quick-links {
+  background-color: $dark-color;
+  padding-bottom: $section-pad + 1rem;
+}
+
+.links-grid {
+  @include card-grid;
+}
+
+.link-card {
+  @include card-surface($silver-color, $border-size);
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 2.5rem $space-sm;
+
+  &:hover {
+    transform: translateY($rise-distance);
+    border-color: $gold-color;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: $white-color;
+  }
+}
+
+.link-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: $space-sm;
+}
+
+//footer
+.footer {
+  background-color: #000000;
+  padding: $space-lg 0;
+  text-align: center;
+  color: $grey-color;
+}
+
+.footer-tagline {
+  margin-top: $space-xs;
+  color: $gold-color;
+}
+
+//back to top button (shown from main.js)
+.back-to-top {
+  position: fixed;
+  right: $space-md;
+  bottom: $space-md;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  color: $black-color;
+  background-color: $gold-color;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: $shadow;
+  transition: opacity $speed ease, visibility $speed ease, transform $speed ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+//the card grids handle their own columns (see _mixins.scss) - this is everything else
+@media (max-width: $bp-md) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .hero {
+    padding: 10px $container-pad-sm;
+  }
+
+  .container {
+    padding: 0 $container-pad-sm;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-img {
+    height: 180px;
+  }
+
+  .back-to-top {
+    right: $space-sm;
+    bottom: $space-sm;
+  }
+}

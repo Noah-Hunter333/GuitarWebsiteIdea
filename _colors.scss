@@ -1,0 +1,17 @@
+//every colour on the site lives here - change one line and it updates everywhere
+$grey-color: #d3d3d3;
+$silver-color: silver;
+$white-color: #ffffff;
+$black-color: #080808;
+$dark-color: #121212;
+$gold-color: #ffd700;
+
+//card border sits on top of the dark panels
+$card-border: rgba(192, 192, 192, 0.35);
+
+//gradients (the -c suffix means "colour")
+$BlacktoBlue-c: linear-gradient(black, blue);
+$BlacktoGold-c: linear-gradient(black, #ffd700);
+$BlacktoSilver-c: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.95));
+$Card-c: linear-gradient(rgba(20, 20, 20, 0.95), rgba(8, 8, 8, 0.98));
+$HeroOverlay-c: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.92));

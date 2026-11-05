@@ -1,0 +1,38 @@
+//layout
+$container-max: 1100px;
+$container-pad: 10%;
+$container-pad-sm: 5%;
+$section-pad: 5rem;
+$hero-pad: 10px 10%;
+
+//narrowest a card is allowed to get before the grid drops a column
+//(220px gives 3 across on desktop, 2 on tablet, 1 on phones)
+$card-min: 220px;
+
+//spacing scale - used for gaps, card padding and margins
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 2rem;
+$space-lg: 3rem;
+
+//shape
+$radius: 8px;
+$radius-sm: 5px;
+$border-size: 2px;
+$border-thin: 1px;
+
+//effects
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+$speed: 0.2s;
+$pop-scale: 1.05;
+$card-pop: 1.03;
+$rise-distance: -5px;
+
+//type scale
+$title-size: 2.2rem;
+$hero-title-size: 4rem;
+$card-title-size: 1.4rem;
+
+//breakpoints - used by the grids so they stack on their own
+$bp-md: 900px;
+$bp-sm: 600px;

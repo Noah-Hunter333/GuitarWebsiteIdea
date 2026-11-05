@@ -3,24 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Guitarist - Passion for Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script type="module" src="main.js" defer></script>
 </head>
 <body>
+    <!-- Hero Section -->
     <div class="hero">
-        <nav>
-<img src="imgs/guitar_nav_logo_128.png" class="logo">
-            <ul>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">What its about</a></li>
-                <li><a href="#">Who am I</a></li>
+        <nav class="navbar">
+            <img src="imgs/guitar_nav_logo_128.png" alt="Guitarist Logo" class="logo">
+            <ul class="nav-links">
+                <!-- these hrefs must match the section ids further down the page -->
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">What It's About</a></li>
+                <li><a href="#instructor">Who I Am</a></li>
             </ul>
-            <div> 
-                <li class="The_Menu_Nav">The Guitarist Menu</li>
-                <li><a href="#">Download </a></li>
+            <div class="nav-buttons">
+                <span class="menu-text">The Guitarist Menu</span>
+                <a href="#" class="btn-download">Download</a>
             </div>
         </nav>
-    
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">Music is My Language</h1>
+            <p class="hero-subtitle">Exploring the beautiful world of guitar and discovering my passion through every chord and string.</p>
+            <div class="hero-images">
+                <img src="imgs/GuitarBackgroundFM.jpg" alt="Guitar Headstock" class="hero-img main">
+            </div>
+        </div>
     </div>
+
+    <!-- Passion & Mission Section -->
+    <section id="about" class="passion-section">
+        <div class="container">
+            <h2 class="section-title">My Journey with Guitar</h2>
+            
+            <div class="passion-grid">
+                <div class="passion-card">
+                    <div class="card-icon">🎸</div>
+                    <h3>The Sound I Love</h3>
+                    <p>There's something magical about the way a guitar speaks - from the soft plucking of fingerstyle to the power of rock riffs. Every instrument tells a story, and I'm eager to share that story with you.</p>
+                </div>
+                
+                <div class="passion-card">
+                    <div class="card-icon">🎵</div>
+                    <h3>Music Beyond Notes</h3>
+                    <p>It's not just about the music itself, but the emotions it evokes. Guitar has taught me to feel deeply, to express myself when words fail, and to find beauty in both simplicity and complexity.</p>
+                </div>
+                
+                <div class="passion-card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Creative Expression</h3>
+                    <p>Playing guitar is like painting with sound. Each chord progression, each melody I create becomes part of my artistic expression - a way to capture feelings and moments in time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Gallery -->
+    <section id="courses" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">My Musical World</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="imgs/GuitarBackgroundFM.jpg" alt="Guitar 1" class="gallery-img">
+                    <p class="gallery-caption">My prized instrument - a gateway to endless creativity</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="imgs/GuitarLogo.png" alt="Guitar 2" class="gallery-img gallery-placeholder">
+                    <p class="gallery-caption">Exploring different tones and styles</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="imgs/guitar_nav_logo_128.png" alt="Picks" class="gallery-img gallery-placeholder">
+                    <p class="gallery-caption">The essential tools of my craft</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="instructor" class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">Why Guitar Matters to Me</h2>
+            
+            <div class="philosophy-content">
+                <p class="philosophy-text">
+                    For me, guitar represents so much more than just a musical instrument. It's been my constant companion through life's ups and downs - 
+                    the comfort during difficult times and the celebration during joyful moments.
+                </p>
+                
+                <div class="quote-box">
+                    <blockquote>
+                        "Music can change the world because it can change people." — Bono
+                    </blockquote>
+                </div>
+                
+                <p class="philosophy-text">
+                    Whether I'm learning new techniques, experimenting with different genres, or simply enjoying the process of creation, 
+                    guitar brings me joy every single day. That's why I want to share this passion with others - not just the technical aspects, 
+                    but the soulful connection between musician and instrument.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Explore More</h2>
+            
+            <div class="links-grid">
+                <a href="#courses" class="link-card">
+                    <span class="link-icon">📚</span>
+                    <h3>Courses & Lessons</h3>
+                </a>
+                
+                <a href="#about" class="link-card">
+                    <span class="link-icon">ℹ️</span>
+                    <h3>About Guitar</h3>
+                </a>
+                
+                <a href="#instructor" class="link-card">
+                    <span class="link-icon">👤</span>
+                    <h3>The Guitarist</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 The Guitarist - Sharing my musical journey</p>
+            <p class="footer-tagline">Music changes lives. Let's play together.</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top" title="Back to Top">↑</button>
 </body>
 </html>
